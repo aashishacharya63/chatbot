@@ -1,5 +1,3 @@
-# app.py
-
 from flask import Flask, render_template, request
 from preprocessor import preprocess_input, load_dataset, preprocess_dataset
 
@@ -18,17 +16,9 @@ def index():
 def chatbot():
     user_input = request.form['user_input']
     processed_input = preprocess_input(user_input)
-    
-    # Example: Retrieve movies matching the user input
-    matched_movies = movie_df[movie_df['name'].str.contains(processed_input, case=False)]
-
-    if len(matched_movies) == 0:
-        response = "No movies found matching your query."
-    else:
-        response = "Movies matching your query:\n"
-        for idx, movie in matched_movies.iterrows():
-            response += f"{movie['name']} ({movie['genre']}) - Directed by {movie['director']}\n"
-
+    # Implement chatbot logic here based on `processed_input` and `movie_df`
+    # For demonstration, returning a simple response
+    response = f"Chatbot received: {processed_input}"
     return render_template('index.html', response=response)
 
 if __name__ == '__main__':
